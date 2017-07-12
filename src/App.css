@@ -13,3 +13,7 @@ html, body, #root {
   width: 100%;
   font-weight: normal;
 }
+
+.content {
+  display: flex;
+}

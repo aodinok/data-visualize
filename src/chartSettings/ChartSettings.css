@@ -1,0 +1,32 @@
+.settingsContainer {
+  margin: 10px;
+  width: 300px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background: #212934;
+  border-radius: 5px;
+}
+
+.pTitle {
+  margin: 10px;
+}
+
+label {
+  color: white;
+  margin: 5px;
+}
+
+.applyBtn {
+  align-self: flex-end;
+  margin: 15px 0 10px 10px;
+  border-radius: 3px;
+  background: white;
+  padding: 10px;
+  min-width: 100px;
+  font-weight: bold;
+  font-size: 14px;
+}

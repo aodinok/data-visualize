@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "fast-csv": "^2.4.0",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10",
+    "react-virtualized": "^9.9.0",
     "recharts": "^1.0.0-alpha.2"
   },
   "devDependencies": {
     "express": "^4.15.3",
+    "fast-csv": "^2.4.0",
     "npm-run-all": "^4.0.2"
   },
   "scripts": {
