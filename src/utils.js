@@ -1,3 +1,5 @@
+import URI from 'urijs'
+
 export function getHash (str) {
   return str.split('').reduce(
     (r, ch) => ((r << 5) - r) + ch.charCodeAt(0)
@@ -5,9 +7,14 @@ export function getHash (str) {
 }
 
 // TODO: extract to API middleware
-export async function fetchResource (resource) {
+export async function fetchResource (resource, params = {}) {
   try {
-    const response = await fetch(`/api/${resource}`)
+    const url = new URI()
+      .path(`../api/${resource}`)
+      .query(params)
+      .normalize()
+      .toString()
+    const response = await fetch(url)
     return await response.json()
   } catch (e) {
     console.warn(e)

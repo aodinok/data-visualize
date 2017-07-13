@@ -9,7 +9,8 @@
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10",
     "react-virtualized": "^9.9.0",
-    "recharts": "^1.0.0-alpha.2"
+    "recharts": "^1.0.0-alpha.2",
+    "urijs": "^1.18.10"
   },
   "devDependencies": {
     "express": "^4.15.3",
