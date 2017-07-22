@@ -4,11 +4,17 @@
 }
 
 .panel {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 15px;
   background: #212934;
   border-radius: 5px;
+}
+
+.panelLoading {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .pTitle {

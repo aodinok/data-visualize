@@ -1,27 +1,31 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { AutoSizer } from 'react-virtualized'
-import { LineChart, XAxis, YAxis, Tooltip, Legend, CartesianGrid, Line } from 'recharts'
+import { CHARTS } from './types'
 
-import './Chart.css'
+import './index.css'
 
 class Chart extends Component {
-  render() {
+  render () {
+    const ChartTypeRenderer = CHARTS[this.props.settings.chartType]
+    if (!ChartTypeRenderer) return null
     return (
       <AutoSizer>
-        {({ width, height }) =>
-          <LineChart width={width - 350} height={height} data={this.props.data}
-            margin={{top: 55, right: 30, left: 20, bottom: 5}}>
-             <XAxis dataKey={this.props.settings.xMetric}/>
-             <YAxis/>
-             <CartesianGrid strokeDasharray="3 3"/>
-             <Tooltip/>
-             <Legend />
-             <Line type="monotone" dataKey={this.props.settings.yMetric} stroke="#8884d8" activeDot={{r: 8}}/>
-          </LineChart>
-        }
+        {({width, height}) =>
+          <ChartTypeRenderer
+            {...this.props}
+            width={width}
+            height={height}
+          />}
       </AutoSizer>
     )
   }
+}
+
+Chart.propTypes = {
+  settings: PropTypes.shape({
+    chartType: PropTypes.string
+  })
 }
 
 export default Chart

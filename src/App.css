@@ -16,4 +16,5 @@ html, body, #root {
 
 .content {
   display: flex;
+  position: relative;
 }

@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
-import DropdownSelect from '../common/DropdownSelect'
-import { fetchResource } from '../utils'
+import PropTypes from 'prop-types'
 
-import './ChartSettings.css'
+import DropdownSelect from '../common/DropdownSelect'
+import Spinner from '../common/Spinner'
+import withApi from '../common/withApi'
+import chartTypes from '../chart/types'
+
+import './index.css'
 
 class ChartSettings extends Component {
   constructor () {
@@ -16,8 +20,8 @@ class ChartSettings extends Component {
 
   async componentDidMount () {
     this.setState({
-      metrics: await fetchResource('metrics'),
-      dates: await fetchResource('dates')
+      metrics: await this.props.apiCall('metrics'),
+      dates: await this.props.apiCall('dates')
     })
   }
 
@@ -34,11 +38,13 @@ class ChartSettings extends Component {
     })
   }
 
-  render() {
+  render () {
+    const { isLoading } = this.props
     return (
       <div className='settingsContainer'>
         <h4 className='pTitle'>Settings:</h4>
-        <div className='panel'>
+        <div className={'panel' + (isLoading ? ' panelLoading' : '')}>
+          {isLoading && <Spinner color='#2375DF' />}
           <label>Start Date:</label>
           <DropdownSelect
             value={this.state.config.startDate}
@@ -67,7 +73,7 @@ class ChartSettings extends Component {
           <DropdownSelect
             value={this.state.config.chartType}
             onChange={this.setOption.bind(this, 'chartType')}
-            options={['Line Chart']}
+            options={chartTypes}
           />
           <button
             onClick={this.applyBtnClick.bind(this)}
@@ -81,4 +87,9 @@ class ChartSettings extends Component {
   }
 }
 
-export default ChartSettings
+ChartSettings.propTypes = {
+  onApply: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool
+}
+
+export default withApi(ChartSettings)
